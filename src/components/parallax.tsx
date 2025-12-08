@@ -8,9 +8,10 @@ interface Props {
   contentY?: string[],
   backgroundOP?: number[],
   contentOP?: number[]
+  contentClass?: string
 }
 
-function ParallaxSection({ children, className = '',backgroundY = ["0%", "0%"], contentY = ["-50%", "70%"],backgroundOP = [2, 0], contentOP = [3, -1]}: Props) {
+function ParallaxSection({ children, className = '', backgroundY = ["0%", "0%"], contentY = ["-50%", "70%"], backgroundOP = [2, -1], contentOP = [1, 1, 0], contentClass = 'z-10' }: Props) {
   const ref = useRef(null)
 
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] })
@@ -19,10 +20,10 @@ function ParallaxSection({ children, className = '',backgroundY = ["0%", "0%"], 
   const bgOpacity = useTransform(scrollYProgress, [0, 1], backgroundOP)
 
   const CY = useTransform(scrollYProgress, [0, 1], contentY)
-  const contentOpacity = useTransform(scrollYProgress, [0, 1], contentOP)
+  const contentOpacity = useTransform(scrollYProgress, [0, 0.6, 1], contentOP)
 
   return (<motion.section ref={ref} className={className + " relative"} style={{ opacity: bgOpacity, y: bgY }}>
-    <motion.div className="z-10" style={{ opacity: contentOpacity, y: CY }}>
+    <motion.div className={contentClass} style={{ opacity: contentOpacity, y: CY }}>
       {children}
     </motion.div>
   </motion.section>)

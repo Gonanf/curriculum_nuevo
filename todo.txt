@@ -1,4 +1,3 @@
 (A) 2025-12-01 Añadir contactos, sobre mi, etc.
 (A) 2025-12-01 Añadir grafos para experiencia y proyectos
 (A) 2025-12-01 Añadir habilidades y ascci
-(A) 2025-12-01 Añadir terminal con comandos de ayuda y manejarse a partir de eso
