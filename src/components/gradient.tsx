@@ -9,7 +9,7 @@ interface Props {
   childClass?: string
 }
 
-export function GradientElement({ children, className = 'bg-foreground', fromColor = 'rgba(3,3,2,0.7)  0', toColor = 'rgba(0,0,0,0) 100%', childClass = `absolute inset-0 transition duration-300 opacity-0 group-hover:opacity-100 z-10 pointer-events-none`, ...props }: Props) {
+export function GradientElement({ children, className = 'bg-foreground', fromColor = 'rgba(135, 51, 51, 0.1)  0%', toColor = 'rgba(0,0,0,0) 10%', childClass = `absolute inset-0 transition duration-300 opacity-0 group-hover:opacity-100 z-10  pointer-events-none`, ...props }: Props) {
 
   console.log("aaa")
   const element = useRef<HTMLDivElement>(null)

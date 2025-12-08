@@ -5,9 +5,8 @@ import { GradientElement } from "./gradient";
 import Gradient from "./bg_gradient";
 
 function Sobre() {
-  return (<GradientElement fromColor="rgba(25,10,10,0.35) 0" toColor="rgba(0,0,0,0) 90%">
-    <Gradient></Gradient>
-    <ParallaxSection contentY={["0%", "0%"]} backgroundOP={[-1, 3]} className="bg-[url('/kira.png')] bg-cover" >
+  return (
+    <ParallaxSection className="bg-[url('/kira.png')] bg-cover" >
       <div className='grow flex flex-col gap-5 min-h-screen  justify-center items-center' >
         <motion.div initial={{ scale: 0 }} whileInView={{ scale: 1 }}
           transition={{ type: "spring", stiffness: 100 }}
@@ -44,7 +43,7 @@ function Sobre() {
       </div>
 
     </ParallaxSection>
-  </GradientElement >)
+)
 }
 
 export default Sobre

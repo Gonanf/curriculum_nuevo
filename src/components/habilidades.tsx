@@ -8,9 +8,8 @@ function Habilidades() {
   const seccion1 = ["Rust", "Javascript", "Typescript", "Python", "C++", "HTML", "CSS", "Vue", "Nuxt"]
   const seccion2 = ["ShadCN UI", "TailwindCSS", "Git", "Github", "Linux", "Arch", "Cloudflare", "API Rest", "POO"]
 
-  return (<GradientElement fromColor={"rgba(255,255,255,0.1) 0"} childClass={`absolute inset-0 transition duration-300 opacity-0 z-10 group-hover:opacity-100 pointer-events-none`}>
-    <ParallaxSection contentY={["0%", "0%"]} backgroundOP={[-1, 3]} className={"bg-amber-950/50 bg-[url('/kira2.png')] bg-cover bg-center"} contentClass="relative min-h-screen flex flex-col backdrop-blur-sm">
-      <Gradient />
+  return (
+    <ParallaxSection className={"bg-amber-950/50 bg-[url('/kira2.png')] bg-cover bg-center"} contentClass="relative min-h-screen flex flex-col backdrop-blur-sm">
       <p className="text-4xl">Habilidades</p>
       <div className='flex grow items-center justify-center gap-1.5' >
         <div className="items-end">
@@ -34,7 +33,7 @@ function Habilidades() {
 
       </div>
     </ParallaxSection>
-  </GradientElement >)
+)
 }
 
 export default Habilidades
