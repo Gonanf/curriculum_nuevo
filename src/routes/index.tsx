@@ -32,7 +32,7 @@ function HomeComponent() {
         transition={{ delay: 1.5 }}
         animate={{ opacity: 1 }}
         ref={section}
-        className='relative grid gap-[20%]'
+        className='relative grid gap-[15%]'
       >
 
         <Hero />

@@ -1,4 +1,4 @@
-import { motion, useScroll, useTransform } from "motion/react"
+import { easeIn, easeInOut, motion, useScroll, useTransform } from "motion/react"
 import { useRef, type ReactNode } from "react"
 
 interface Props {
@@ -11,16 +11,16 @@ interface Props {
   contentClass?: string
 }
 
-function ParallaxSection({ children, className = '', backgroundY = ["-100%","0%","90%"], contentY = ["-100%","0%", "20%"], backgroundOP = [2, -1], contentOP = [0, 1,1, 0], contentClass = 'z-10' }: Props) {
+function ParallaxSection({ children, className = '', backgroundY = ["-70%","0%","20%"], contentY = ["-70%","0", "50vh"], backgroundOP = [2, -1], contentOP = [0, 1,1, 0], contentClass = 'z-10' }: Props) {
   const ref = useRef(null)
 
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] })
 
   const bgY = useTransform(scrollYProgress, [0,0.5, 1], backgroundY)
-  const bgOpacity = useTransform(scrollYProgress, [0,0.5,0.8, 1], contentOP)
+  const bgOpacity = useTransform(scrollYProgress, [0,0.25,0.75, 1], contentOP)
 
-  const CY = useTransform(scrollYProgress, [0,0.5, 1], contentY)
-  const contentOpacity = useTransform(scrollYProgress, [0, 0.5,0.8, 1], contentOP)
+  const CY = useTransform(scrollYProgress, [0,0.5, 0.75], contentY)
+  const contentOpacity = useTransform(scrollYProgress, [0, 0.25,0.75, 1], contentOP)
 
   return (<motion.section ref={ref} className={className + " relative transform-gpu"} style={{ opacity: bgOpacity, y: bgY }}>
     <motion.div className={contentClass + "transform-gpu"} style={{ opacity: contentOpacity, y: CY }}>

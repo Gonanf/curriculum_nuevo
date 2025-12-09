@@ -1,4 +1,4 @@
-import { useMotionValue, motion, useMotionTemplate } from "motion/react"
+import { useMotionValue, motion, useMotionTemplate, useSpring } from "motion/react"
 import { type ReactNode, useRef } from "react"
 
 interface Props {
@@ -13,8 +13,8 @@ export function GradientElement({ children, className = 'bg-foreground', fromCol
 
   console.log("aaa")
   const element = useRef<HTMLDivElement>(null)
-  const currentX = useMotionValue(0)
-  const currentY = useMotionValue(0)
+  const currentX = useSpring(useMotionValue(0))
+  const currentY = useSpring(useMotionValue(0))
   const updateMouse = (event: MouseEvent) => {
     if (!element.current) return
 
