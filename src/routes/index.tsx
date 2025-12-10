@@ -4,7 +4,7 @@ import { useRef } from 'react'
 import Hero from '@/components/hero.tsx'
 import Sobre from '@/components/sobre.tsx'
 import Habilidades from '@/components/habilidades'
-import Experiencia from '@/components/experiencia'
+import Educacion from '@/components/educacion'
 import Gradient from '@/components/bg_gradient'
 import { GradientElement } from '@/components/gradient'
 
@@ -25,21 +25,20 @@ function HomeComponent() {
         <motion.div transition={{ duration: 0.5 }} initial={{ scaleY: 0 }} animate={{ scaleY: 1 }} className="w-1 absolute inset-0 translate-x-[50vw] z-10 bg-foreground"></motion.div>
         <motion.div transition={{ delay: 1 }} className='w-full h-full grow bg-fuchsia-950' initial={{ clipPath: "inset(0 0 0 0)" }} animate={{ clipPath: "inset(0 0 0 100%)" }} ></motion.div>
       </motion.div>
-    <Gradient className='fixed w-full h-full bg-radial from-transparent to-70% to-black/80 pointer-events-none z-20'></Gradient>
+      <Gradient className='fixed w-full h-full bg-radial from-transparent to-70% to-black/80 pointer-events-none z-20'></Gradient>
 
       <motion.div layout
         initial={{ opacity: 0 }}
         transition={{ delay: 1.5 }}
         animate={{ opacity: 1 }}
         ref={section}
-        className='relative grid gap-[15%]'
+        className='relative grid gap-[25%] '
       >
 
         <Hero />
         <Sobre />
         <Habilidades />
-        <Experiencia />
-        <Experiencia />
+        <Educacion />
       </motion.div>
     </GradientElement>
   )

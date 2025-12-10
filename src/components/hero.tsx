@@ -6,12 +6,12 @@ import { GradientElement } from "./gradient";
 import Gradient from "./bg_gradient";
 
 function Hero() {
-  return (<GradientElement className="" fromColor='rgba(191, 154, 206, 0.15)  0' toColor='rgba(255, 255, 255, 0)  100%'>
-    <Gradient />
+  return (
     <ParallaxSection className={cn(
       "[background-size:40px_40px]",
       "[background-image:linear-gradient(to_right,#e4e4e7_1px,transparent_1px),linear-gradient(to_bottom,#e4e4e7_1px,transparent_1px)]",
       "dark:[background-image:linear-gradient(to_right,#262626_1px,transparent_1px),linear-gradient(to_bottom,#262626_1px,transparent_1px)]",
+
     )}>
       <div className='grow flex flex-col gap-5 min-h-screen  justify-center md:items-center' >
         <h1 className='md:text-9xl max-md:text-2xl font-extrabold md:text-center font-mono  bg-linear-to-r to-secondary from-neutral-300 bg-clip-text text-transparent'>Gabriel Solotorevsky</h1>
@@ -81,8 +81,7 @@ function Hero() {
         </motion.div>
       </div>
 
-    </ParallaxSection>
-  </GradientElement>)
+    </ParallaxSection>)
 }
 
 export default Hero
