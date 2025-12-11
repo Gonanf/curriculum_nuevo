@@ -9,7 +9,7 @@ function Habilidades() {
   const seccion2 = ["ShadCN UI", "TailwindCSS", "Git", "Github", "Linux", "Arch", "Cloudflare", "API Rest", "POO"]
 
   return (
-    <ParallaxSection className={"bg-amber-950/50 bg-[url('/kira2.png')] bg-cover bg-center"} contentClass="relative min-h-screen flex flex-col backdrop-blur-sm">
+    <ParallaxSection className={"bg-amber-950/50 bg-[url('/kira2.png')] bg-cover bg-center"} contentClass="sticky inset-0 min-h-screen flex flex-col backdrop-blur-sm">
       <div className="border-4 border-fuchsia-950 min-h-screen mt-4 ml-4 mr-4 pb-4 flex flex-col">
         <p className="text-4xl p-6">Habilidades</p>
 
