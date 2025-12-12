@@ -10,10 +10,10 @@ function Habilidades() {
 
   return (
     <ParallaxSection className={"bg-amber-950/50 bg-[url('/kira2.png')] bg-cover bg-center"} contentClass="sticky inset-0 min-h-screen flex flex-col backdrop-blur-sm">
-      <div className="border-4 border-fuchsia-950 min-h-screen mt-4 ml-4 mr-4 pb-4 flex flex-col">
+      <div className="border-4 border-fuchsia-950 min-h-[90vh] m-12 flex flex-col">
         <p className="text-4xl p-6">Habilidades</p>
 
-        <div className='flex grow justify-center gap-1.5 border-t-4 border-fuchsia-950' >
+        <div className='flex grow justify-center gap-1.5 border-t-4 border-fuchsia-950 p-4' >
           <div className="items-end justify-between flex flex-col grow">
             {seccion1.map((val) =>
               <div className="flex gap-4 items-center" key={val}>
