@@ -1,16 +1,17 @@
 import ParallaxSection from "./parallax";
-import { easeInOut, motion, MotionValue, useScroll, useSpring, useTransform } from "motion/react";
+import { easeIn, easeInOut, motion, MotionValue, useScroll, useSpring, useTransform } from "motion/react";
 import { useRef, useState, type ReactNode } from "react";
 
 interface Items {
   titulo: string,
-  descripcion: string,
+  nombre: string,
+  fecha: string,
   image: string
 }
 
 interface Props {
   children?: ReactNode,
-  value: MotionValue,
+  value?: MotionValue,
   className?: string
 }
 
@@ -23,27 +24,28 @@ interface PropsContainer {
   percentage: MotionValue,
 }
 
-function PartContainer({ left = true, items, percentage }: PropsContainer) {
+function PartContainer({ left = false, items, percentage }: PropsContainer) {
 
   //TODO: Implement only one and then animate and replace the elements title, description and image
 
   const starting = left ? ["0%", "100%"] : ["100%", "0%"]
 
-  const l_value = Array(items.length).fill(starting[0]).map((_, index) => starting[index % 2])
-  const r_value = [...l_value].reverse()
+  const op_size = ((items.length * 2) - 1)
+  // 100 / 0 / 100 / 0
+  const l_value = Array(op_size).fill(starting[0]).map((_, index) => starting[index % 2])
 
   console.log("LEFT", l_value)
   const change = 0.5 / items.length
+  const change_op = 0.7 / op_size
+  const change_op_list = Array(op_size).fill(0.25).map((val, index) => val + (change_op * index))
   const change_ar = Array(items.length).fill(0.25).map((val, index) => val + (change * index))
   const change_val = Array(items.length).fill(0).map((val, index) => index)
 
-  const leftside = useTransform(percentage, change_ar, l_value)
-  const rightside = useTransform(percentage, change_ar, r_value)
+  const leftside = useTransform(percentage, change_op_list, l_value)
 
   const item_index = useTransform(percentage, change_ar, change_val)
 
   const [currentIndex, setIndex] = useState(0)
-
 
   item_index.on('change', (value) => {
     const floor = Math.floor(value)
@@ -53,39 +55,39 @@ function PartContainer({ left = true, items, percentage }: PropsContainer) {
     }
   })
 
-  // const op_Ar: [Array<number>, Array<string>] = currentIndex ? [[0.25, 0.5], ["0%", "100%"]] : [[0.5, 1], ["100%", "0%"]]
-  // const op = useTransform(percentage, op_Ar[0], op_Ar[1])
-
-  return (<motion.div className=" relative h-full w-full grow" style={{ backgroundImage: items[currentIndex].image }} >
-    <Part className="absolute top-0 w-[50vw] h-full m-4" value={leftside}>
+  return (<motion.div className=" relative h-full w-full flex grow bg-cover bg-center" style={{ backgroundImage: `url('/${items[currentIndex].image}')`, opacity: leftside }} >
+    <Part className="w-[50vw] h-full m-4">
       <Slider percentage={percentage}></Slider>
     </Part>
-    <Part value={rightside} className="flex flex-col justify-center absolute top-0 w-[50vw] h-full m-4 ">
-      <h3 className="text-2xl text-white">{items[currentIndex].titulo}</h3>
-      <p className="text-lg text-muted-foreground">{items[currentIndex].descripcion}</p>
+    <Part value={leftside} className="flex flex-col justify-center w-[50vw] h-full m-4 ">
+      <div className="border-2 border-cyan-400 bg-cyan-50/10 backdrop-blur-xl p-8 rounded-md gap-4 grid">
+        <h3 className="text-3xl text-white font-extrabold">{items[currentIndex].titulo}</h3>
+        <p className="text-xl text-cyan-400">{items[currentIndex].nombre}</p>
+        <p className="text-lg px-4 py-2 text-cyan-300 bg-linear-to-r from-cyan-500/10 to-purple-500/10 border border-cyan-100/30 rounded-full mt-12">{items[currentIndex].fecha}</p>
+      </div>
+
     </Part>
   </motion.div>)
 
 }
 
 function Part({ children, value, className = "absolute top-0 w-[50vw] h-full m-4 " }: Props) {
-  value.on('change', (e) => console.log(e))
+  if (value) value.on('change', (e) => console.log(e))
   return (
-    <motion.div className={className} transition={{ duration: 1, ease: easeInOut }} style={{ x: value }}>
+    <motion.div className={className} transition={{ duration: 1, ease: easeInOut }} style={{ opacity: value }}>
       {children}
     </motion.div>
   )
 }
 
-function Slider({ percentage }) {
+function Slider({ percentage }: { percentage: MotionValue }) {
 
   //TODO: Make an option to start from bottom
   const Y = useSpring(useTransform(percentage, [0.25, 0.75], ["-80vh", "-10vh"]))
 
-
   return (<div className="relative h-full">
     <div className="w-2 bg-fuchsia-950 h-full"></div>
-    <motion.div className="rounded-full bg-fuchsia-950 absolute w-12 h-12" transition={{ duration: 1, ease: easeInOut }} style={{ y: Y, x: "-40%" }}></motion.div>
+    <motion.div className="rounded-full bg-radial from-fuchsia-950 to-purple-500 border border-t-purple-800 absolute w-12 h-12" animate={{ rotate: 360 }} transition={{ duration: 1, ease: easeIn, repeat: Infinity }} style={{ y: Y, x: "-40%" }}></motion.div>
   </div>)
 }
 
@@ -98,27 +100,29 @@ function Educacion() {
 
   const items: Array<Items> = [
     {
-      titulo: "Nuevo Colegio Glew",
-      descripcion: "Marzo 2011 - Diciembre 2017",
-      image: "kira2.png"
+      titulo: "Educacion Primaria",
+      nombre: "Nuevo Colegio Glew",
+      fecha: "Marzo 2011 - Diciembre 2017",
+      image: "logo_bg.png"
     },
     {
-      titulo: "E.E.S.T N°2",
-      descripcion: "Marzo 2018 - Diciembre 2025",
-      image: "rust2.png"
+      titulo: "Educacion Secundaria Tecnica",
+      nombre: "E.E.S.T N°2",
+      fecha: "Marzo 2018 - Diciembre 2025",
+      image: "escuela.png"
     },
   ]
 
   return (
-    <ParallaxSection ref={ref} className={"bg-amber-950/50 bg-[url('/kira2.png')] bg-cover bg-center min-h-[500vh]"} backgroundY={["0%", "0%", "0%"]} contentClass="relative min-h-screen h-full flex flex-col backdrop-blur-sm">
+    <ParallaxSection ref={ref} className={"bg-amber-950/50 bg-linear-to-b from-cyan-950 to-amber-950 bg-cover bg-center min-h-[500vh]"} backgroundY={["0%", "0%", "0%"]} contentClass="relative min-h-screen h-full flex flex-col backdrop-blur-sm">
       <div className="border-4 border-fuchsia-950 mt-4 ml-4 mr-4 pb-4 flex flex-col sticky inset-0 min-h-screen">
-        <p className="text-4xl p-6">educacion</p>
+        <p className="text-4xl p-6 font-extrabold">Educacion</p>
 
         <div className='flex grow border-t-4 border-fuchsia-950' >
 
 
 
-          <PartContainer items={items} left={true} percentage={scrollYProgress}>
+          <PartContainer items={items} percentage={scrollYProgress}>
           </PartContainer>
 
 
