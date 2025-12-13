@@ -122,4 +122,20 @@ html, body {
     @apply bg-background text-foreground;
   }
 }
+  
+  .cyber-grid-dark {
+    background-image: 
+      linear-gradient(rgba(168, 85, 247, 0.2) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(168, 85, 247, 0.2) 1px, transparent 1px);
+    background-size: 20px 20px;
+  }
+
+@keyframes gradient-shift {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
 

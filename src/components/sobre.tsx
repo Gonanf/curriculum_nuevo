@@ -10,7 +10,10 @@ function Sobre() {
       <div className='grow flex flex-col gap-5 min-h-screen  justify-center items-center' >
         <motion.div initial={{ scale: 0 }} whileInView={{ scale: 1 }}
           transition={{ type: "spring", stiffness: 100 }}
-          className='md:w-[50%] max-md:w-full backdrop-blur-3xl bg-[#0F172A]/50 border-2 border-fuchsia-950 rounded-3xl p-2'>
+          className='md:w-[50%] max-md:w-full backdrop-blur-3xl           border-2 
+          border-green-500/40
+          shadow-[0px_0px_45px_10px_rgba(51,209,122,0.6)]
+        bg-black/95  rounded-3xl p-2'>
           <p>
             <span className='text-fuchsia-800'>chaos</span>
             <span className='text-amber-300'>@</span>

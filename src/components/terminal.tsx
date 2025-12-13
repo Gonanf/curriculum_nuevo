@@ -24,6 +24,11 @@ function Terminal({ children, className, textSpeed = 35 }: Props) {
     res.current = new Typed(text.current, {
       stringsElement: child.current,
       typeSpeed: textSpeed,
+      backSpeed: 15,
+      backDelay: 1000,
+      loop: false,
+      showCursor: true,
+      cursorChar: '|',
     })
     res.current.stop()
 
@@ -39,13 +44,33 @@ function Terminal({ children, className, textSpeed = 35 }: Props) {
 
     res.current.start()
   }, [inView])
-  return <motion.div className={className}>
-    <span ref={text}>
-      <div ref={child}>
-        {children}
-      </div>
-    </span>
-  </motion.div>
+  
+  return (
+    <motion.div 
+      className={`
+        relative 
+        rounded-lg 
+        p-4 
+        font-mono 
+        text-green-400 
+        ${className}
+      `}
+      initial={{ opacity: 0, scale: 0.95 }}
+      animate={{ opacity: 1, scale: 1 }}
+      transition={{ duration: 0.6, ease: "easeOut" }}
+    >
+      <span 
+        ref={text}
+        className="block leading-relaxed"
+      >
+        <div ref={child} className="hidden">
+          {children}
+        </div>
+      </span>
+      
+      <div className="absolute inset-0 bg-gradient-to-br from-green-500/5 via-transparent to-cyan-500/5 rounded-lg pointer-events-none"></div>
+    </motion.div>
+  )
 }
 
 export default Terminal;

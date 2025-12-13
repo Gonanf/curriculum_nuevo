@@ -11,7 +11,7 @@ interface Props {
   contentClass?: string
 }
 
-function ParallaxSection({ children, className = '', backgroundY = ["-30%", "0%", "30%"], contentY = ["-30%", "0", "30vh"], backgroundOP = [0, 1, 0], contentOP = [0, 1, 1, 0], contentClass = 'z-10 sticky inset-0', ...props }: Props) {
+function ParallaxSection({ children, className = '', backgroundY = ["0%", "0%", "30%"], contentY = ["-30%", "0", "30vh"], backgroundOP = [0, 1, 0], contentOP = [0, 1, 1, 0], contentClass = 'z-10 sticky inset-0', ...props }: Props) {
   const ref = useRef(null)
 
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] })
