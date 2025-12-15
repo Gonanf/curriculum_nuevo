@@ -1,5 +1,5 @@
-import { easeIn, easeInOut, motion, useScroll, useTransform } from "motion/react"
-import { useRef, type ReactNode } from "react"
+import { motion, useScroll, useTransform } from "motion/react"
+import { useRef, type ReactNode, type RefObject } from "react"
 
 interface Props {
   children: ReactNode,
@@ -7,23 +7,23 @@ interface Props {
   backgroundY?: string[],
   contentY?: string[],
   backgroundOP?: number[],
-  contentOP?: number[]
-  contentClass?: string
+  contentOP?: number[],
+  contentClass?: string,
+  ref?: RefObject<HTMLDivElement | null>
 }
 
-function ParallaxSection({ children, className = '', backgroundY = ["0%", "0%", "30%"], contentY = ["-30%", "0", "30vh"], backgroundOP = [0, 1, 0], contentOP = [0, 1, 1, 0], contentClass = 'z-10 sticky inset-0', ...props }: Props) {
-  const ref = useRef(null)
+function ParallaxSection({ children, className = '', backgroundY = ["0%", "0%", "30%"], contentOP = [0, 1, 1, 0], contentClass = 'z-10 sticky inset-0', ref, ...props }: Props) {
+  const ref_T = useRef(null)
 
-  const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] })
+  const { scrollYProgress } = useScroll({ target: ref_T, offset: ["start end", "end start"] })
 
   const bgY = useTransform(scrollYProgress, [0, 0.5, 1], backgroundY)
   const bgOpacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], contentOP)
 
-  const CY = useTransform(scrollYProgress, [0, 0.5, 0.75], contentY)
   const contentOpacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], contentOP)
 
-  return (<motion.section {...props} className={className + " relative min-h-[150%]"} style={{ opacity: bgOpacity, y: bgY }}>
-    <motion.div ref={ref} className={contentClass} style={{ opacity: contentOpacity }}>
+  return (<motion.section {...props} ref={ref} className={className + " relative min-h-[150%]"} style={{ opacity: bgOpacity, y: bgY }}>
+    <motion.div ref={ref_T} className={contentClass} style={{ opacity: contentOpacity }}>
       {children}
     </motion.div>
   </motion.section>)

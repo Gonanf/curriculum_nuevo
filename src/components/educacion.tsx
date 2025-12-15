@@ -16,33 +16,25 @@ interface Props {
 }
 
 interface PropsContainer {
-  // children?: ReactNode,
   left?: boolean,
-  // animate?: boolean,
-  // bottom?: boolean,
   items: Items[],
   percentage: MotionValue,
 }
 
 function PartContainer({ left = false, items, percentage }: PropsContainer) {
 
-  //TODO: Implement only one and then animate and replace the elements title, description and image
-
   const starting = left ? ["0%", "100%"] : ["100%", "0%"]
 
   const op_size = ((items.length * 2) - 1)
-  // 100 / 0 / 100 / 0
   const l_value = Array(op_size).fill(starting[0]).map((_, index) => starting[index % 2])
 
-  console.log("LEFT", l_value)
   const change = 0.5 / items.length
   const change_op = 0.7 / op_size
   const change_op_list = Array(op_size).fill(0.25).map((val, index) => val + (change_op * index))
   const change_ar = Array(items.length).fill(0.25).map((val, index) => val + (change * index))
-  const change_val = Array(items.length).fill(0).map((val, index) => index)
+  const change_val = Array(items.length).fill(0).map((_, index) => index)
 
   const leftside = useTransform(percentage, change_op_list, l_value)
-
   const item_index = useTransform(percentage, change_ar, change_val)
 
   const [currentIndex, setIndex] = useState(0)
@@ -51,7 +43,6 @@ function PartContainer({ left = false, items, percentage }: PropsContainer) {
     const floor = Math.floor(value)
     if (currentIndex != floor) {
       setIndex(floor)
-      console.log(value)
     }
   })
 
@@ -66,10 +57,8 @@ function PartContainer({ left = false, items, percentage }: PropsContainer) {
         <p className="text-base sm:text-lg md:text-xl text-cyan-400">{items[currentIndex].nombre}</p>
         <p className="text-sm sm:text-base md:text-lg px-2 sm:px-4 py-1 sm:py-2 text-cyan-300 bg-linear-to-r from-cyan-500/10 to-purple-500/10 border border-cyan-100/30 rounded-full mt-4 sm:mt-8 md:mt-12">{items[currentIndex].fecha}</p>
       </div>
-
     </Part>
   </motion.div>)
-
 }
 
 function Part({ children, value, className = "absolute top-0 w-full md:w-[50vw] h-full m-2 sm:m-4" }: Props) {
@@ -81,8 +70,6 @@ function Part({ children, value, className = "absolute top-0 w-full md:w-[50vw] 
 }
 
 function Slider({ percentage }: { percentage: MotionValue }) {
-
-  //TODO: Make an option to start from bottom
   const Y = useSpring(useTransform(percentage, [0.25, 0.75], ["-80vh", "-10vh"]))
 
   return (<div className="relative h-full ml-12">
@@ -92,11 +79,8 @@ function Slider({ percentage }: { percentage: MotionValue }) {
 }
 
 function Educacion() {
-  const ref = useRef(null)
-
-
+  const ref = useRef<HTMLDivElement>(null)
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] })
-
 
   const items: Array<Items> = [
     {
@@ -117,27 +101,15 @@ function Educacion() {
       fecha: "Agosto 2025 - Octubre 2025",
       image: "logo-siscod-1.png"
     },
-
   ]
 
   return (
     <ParallaxSection ref={ref} className={"bg-amber-950/50 bg-linear-to-b from-cyan-950 to-amber-950 bg-cover bg-center min-h-[500vh]"} backgroundY={["0%", "0%", "0%"]} contentClass="relative min-h-screen h-full flex flex-col backdrop-blur-sm">
       <div className="border-2 sm:border-4 border-fuchsia-950 mt-2 sm:mt-4 mx-2 sm:mx-4 pb-2 sm:pb-4 flex flex-col sticky inset-0 min-h-screen">
         <p className="text-xl sm:text-2xl md:text-4xl p-3 sm:p-6 font-extrabold">Educacion/Experiencia</p>
-
-        <div className='flex grow border-t-2 sm:border-t-4 border-fuchsia-950' >
-
-
-
-          <PartContainer items={items} percentage={scrollYProgress}>
-          </PartContainer>
-
-
-
-
-
+        <div className='flex grow border-t-2 sm:border-t-4 border-fuchsia-950'>
+          <PartContainer items={items} percentage={scrollYProgress} />
         </div>
-
       </div>
     </ParallaxSection>
   )

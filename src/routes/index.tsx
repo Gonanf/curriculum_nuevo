@@ -1,5 +1,5 @@
 import { createFileRoute } from '@tanstack/react-router'
-import { motion, useScroll } from 'motion/react'
+import { motion } from 'motion/react'
 import { useRef } from 'react'
 import Hero from '@/components/hero.tsx'
 import Sobre from '@/components/sobre.tsx'

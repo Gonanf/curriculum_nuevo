@@ -15,7 +15,7 @@ export function GradientElement({ children, className = 'bg-foreground', fromCol
   const element = useRef<HTMLDivElement>(null)
   const currentX = useSpring(useMotionValue(0))
   const currentY = useSpring(useMotionValue(0))
-  const updateMouse = (event: MouseEvent) => {
+  const updateMouse = (event: React.MouseEvent<HTMLDivElement>) => {
     if (!element.current) return
 
     const size = element.current.getBoundingClientRect()

@@ -1,3 +1,5 @@
-(A) 2025-12-01 Añadir contactos, sobre mi, etc.
-(A) 2025-12-01 Añadir grafos para experiencia y proyectos
-(A) 2025-12-01 Añadir habilidades y ascci
+- [x] Analizar el error de TypeScript en educacion.tsx
+- [x] Examinar el componente ParallaxSection para entender su estructura
+- [x] Solucionar el problema de la prop ref
+- [x] Verificar que la funcionalidad de scroll siga funcionando
+- [x] Probar que no haya otros errores similares
