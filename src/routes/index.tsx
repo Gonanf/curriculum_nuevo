@@ -8,6 +8,7 @@ import Educacion from '@/components/educacion'
 import Gradient from '@/components/bg_gradient'
 import { GradientElement } from '@/components/gradient'
 import Proyectos from '@/components/proyectos'
+import Contacto from '@/components/contacto'
 
 export const Route = createFileRoute('/')({
   component: HomeComponent,
@@ -41,6 +42,7 @@ function HomeComponent() {
         <Habilidades />
         <Educacion />
         <Proyectos />
+        <Contacto />
       </motion.div>
     </GradientElement>
   )

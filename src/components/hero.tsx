@@ -6,9 +6,9 @@ import Terminal from "./terminal";
 function Hero() {
   return (
     <ParallaxSection className="cyber-grid-dark">
-      <div className='grow flex flex-col gap-5 min-h-screen  justify-center md:items-center' >
+      <div className='grow flex flex-col gap-5 min-h-screen px-4 sm:px-8 justify-center md:items-center' >
         <motion.h1 
-          className='md:text-9xl max-md:text-2xl font-extrabold md:text-center font-mono  bg-linear-to-r to-secondary from-neutral-300 bg-clip-text text-transparent bg-[200%]'
+          className='text-3xl sm:text-5xl md:text-7xl lg:text-9xl font-extrabold md:text-center font-mono bg-linear-to-r to-secondary from-neutral-300 bg-clip-text text-transparent bg-[200%]'
           initial={{ 
             backgroundPosition: "0% 0%",
             opacity: 0,
@@ -24,16 +24,10 @@ function Hero() {
               ease: "easeInOut"
           }}
         >Gabriel Solotorevsky</motion.h1>
-        <p className='text-neutral-400 text-sm'>Desarrollador de Software/Fullstack</p>
+        <p className='text-neutral-400 text-xs sm:text-sm md:text-base'>Desarrollador de Software/Fullstack</p>
         <motion.div initial={{ scale: 0 }} whileInView={{ scale: 1 }}
           transition={{ type: "spring", stiffness: 100 }}
-          className='md:min-w-[50%] max-md:w-full  bg-[#0F172A]         
-          border-2 
-          border-green-500/40
-          shadow-[0px_0px_45px_10px_rgba(51,209,122,0.6)]
-        bg-black/95 
-
-          rounded-3xl p-2'>
+          className='w-full md:min-w-[50%] md:max-w-[90%] lg:max-w-[70%] bg-[#0F172A] border-2 border-green-500/40 shadow-[0px_0px_25px_5px_rgba(51,209,122,0.6)] sm:shadow-[0px_0px_45px_10px_rgba(51,209,122,0.6)] bg-black/95 rounded-xl sm:rounded-3xl p-2'>
 
           <p>
             <span className='text-fuchsia-800'>chaos</span>
@@ -42,9 +36,9 @@ function Hero() {
             <span className='text-amber-300'> {'>'} </span>
             <span className='text-fuchsia-800'> fasfetch</span>
           </p>
-          <div className='flex w-full '>
-            <img src='kira.png' className='mix-blend-plus-lighter self-center md:w-xs md:h-xs max-md:w-1/2' />
-            <Terminal className='block text-left max-md:text-xs '>
+          <div className='flex flex-col sm:flex-row w-full'>
+            <img src='kira.png' className='mix-blend-plus-lighter self-center w-32 h-32 sm:w-48 sm:h-48 md:w-64 md:h-64' />
+            <Terminal className='block text-left text-[10px] sm:text-xs md:text-sm'>
               <p>
                 <span className='text-fuchsia-800'>chaos</span>
                 <span className='text-amber-300'>@</span>

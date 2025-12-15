@@ -55,16 +55,16 @@ function PartContainer({ left = false, items, percentage }: PropsContainer) {
     }
   })
 
-  return (<motion.div className=" relative h-full w-full flex grow bg-cover bg-center">
+  return (<motion.div className="relative h-full w-full flex flex-col md:flex-row grow bg-cover bg-center">
     <motion.img src={items[currentIndex].image} alt="" className="absolute w-full h-full object-cover blur-xl" style={{ opacity: leftside }} />
-    <Part className="w-[50vw] h-full m-4">
+    <Part className="hidden md:block w-[50vw] h-full m-2 sm:m-4">
       <Slider percentage={percentage}></Slider>
     </Part>
-    <Part value={leftside} className="flex flex-col justify-center w-[50vw] h-full m-4 ">
-      <div className="border-2 border-cyan-400 bg-cyan-800/90 backdrop-blur-xl p-8 rounded-md gap-4 grid">
-        <h3 className="text-3xl text-white font-extrabold">{items[currentIndex].titulo}</h3>
-        <p className="text-xl text-cyan-400">{items[currentIndex].nombre}</p>
-        <p className="text-lg px-4 py-2 text-cyan-300 bg-linear-to-r from-cyan-500/10 to-purple-500/10 border border-cyan-100/30 rounded-full mt-12">{items[currentIndex].fecha}</p>
+    <Part value={leftside} className="flex flex-col justify-center w-full md:w-[50vw] h-full m-2 sm:m-4 px-2 sm:px-0">
+      <div className="border-2 border-cyan-400 bg-cyan-800/90 backdrop-blur-xl p-4 sm:p-6 md:p-8 rounded-md gap-2 sm:gap-4 grid">
+        <h3 className="text-xl sm:text-2xl md:text-3xl text-white font-extrabold">{items[currentIndex].titulo}</h3>
+        <p className="text-base sm:text-lg md:text-xl text-cyan-400">{items[currentIndex].nombre}</p>
+        <p className="text-sm sm:text-base md:text-lg px-2 sm:px-4 py-1 sm:py-2 text-cyan-300 bg-linear-to-r from-cyan-500/10 to-purple-500/10 border border-cyan-100/30 rounded-full mt-4 sm:mt-8 md:mt-12">{items[currentIndex].fecha}</p>
       </div>
 
     </Part>
@@ -72,7 +72,7 @@ function PartContainer({ left = false, items, percentage }: PropsContainer) {
 
 }
 
-function Part({ children, value, className = "absolute top-0 w-[50vw] h-full m-4 " }: Props) {
+function Part({ children, value, className = "absolute top-0 w-full md:w-[50vw] h-full m-2 sm:m-4" }: Props) {
   return (
     <motion.div className={className} transition={{ duration: 1, ease: easeInOut }} style={{ opacity: value }}>
       {children}
@@ -122,10 +122,10 @@ function Educacion() {
 
   return (
     <ParallaxSection ref={ref} className={"bg-amber-950/50 bg-linear-to-b from-cyan-950 to-amber-950 bg-cover bg-center min-h-[500vh]"} backgroundY={["0%", "0%", "0%"]} contentClass="relative min-h-screen h-full flex flex-col backdrop-blur-sm">
-      <div className="border-4 border-fuchsia-950 mt-4 ml-4 mr-4 pb-4 flex flex-col sticky inset-0 min-h-screen">
-        <p className="text-4xl p-6 font-extrabold">Educacion/Experiencia</p>
+      <div className="border-2 sm:border-4 border-fuchsia-950 mt-2 sm:mt-4 mx-2 sm:mx-4 pb-2 sm:pb-4 flex flex-col sticky inset-0 min-h-screen">
+        <p className="text-xl sm:text-2xl md:text-4xl p-3 sm:p-6 font-extrabold">Educacion/Experiencia</p>
 
-        <div className='flex grow border-t-4 border-fuchsia-950' >
+        <div className='flex grow border-t-2 sm:border-t-4 border-fuchsia-950' >
 
 
 

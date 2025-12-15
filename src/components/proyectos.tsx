@@ -1,4 +1,4 @@
-import { easeOut, motion } from "motion/react";
+import { easeInOut, motion } from "motion/react";
 import ParallaxSection from "./parallax";
 import Terminal from "./terminal";
 interface Project {
@@ -98,12 +98,17 @@ const projects: Project[] = [
 ];
 
 function ProjectCard({ project }: { project: Project }) {
-  const statusColors = {
-    "Completado": "text-green-400",
-    "En Progreso": "text-yellow-400",
-    "Planeado": "text-cyan-400"
+  const statusColors = (opacity: number) => {
+    return {
+      "Completado": `oklch(79.2% 0.209 151.711 / ${opacity})`,
+      "En Progreso": `oklch(87.9% 0.169 91.605 / ${opacity})`,
+      "Planeado": `oklch(78.9% 0.154 211.53 / ${opacity})`
+    }[project.status]
   };
 
+  const hover_variant = {
+    hover: { color: statusColors(1) }
+  }
   return (
     <motion.div
       initial={{ opacity: 0, y: 50, scale: 0.9 }}
@@ -112,26 +117,31 @@ function ProjectCard({ project }: { project: Project }) {
         duration: 0.6,
         type: "spring"
       }}
-      whileHover={{
-        scale: 1.05,
-        boxShadow: "0px 0px 45px 10px rgba(51,209,122,0.6)"
+      whileHover={'hover'}
+      variants={{
+        hover: {
+          scale: 1.05,
+          filter: `drop-shadow(16px 16px ${statusColors(1)})`,
+          // boxShadow: "0px 0px 45px 10px rgba(51,209,122,0.6)"
+        }
       }}
-      className="group relative"
+      className="relative"
+      style={{ filter: `drop-shadow(0 3px 3px ${statusColors(1)})` }}
     >
-      <div className="bg-black/95 backdrop-blur-3xl border-2 border-green-500/40 rounded-3xl p-6 h-full flex flex-col">
+      <div className="bg-black/95 rounded-2xl sm:rounded-3xl p-4 sm:p-6 h-full flex flex-col" style={{ border: `2px solid ${statusColors(0.4)}` }}>
         <div className="flex justify-between items-start mb-4">
           <div>
-            <h3 className="text-xl font-bold text-white mb-1 group-hover:text-green-400 transition-colors">
+            <motion.h3 className="text-lg sm:text-xl font-bold mb-1" initial={{ color: 'oklch(98.2% 0.018 155.826)' }} transition={{ duration: 0.2, ease: easeInOut }} variants={hover_variant}>
               {project.title}
-            </h3>
+            </motion.h3>
             <span className="text-sm text-gray-400">{project.year}</span>
           </div>
-          <span className={`text-xs font-mono px-2 py-1 rounded ${statusColors[project.status]}`}>
+          <span className='text-xs font-mono px-2 py-1 rounded' style={{ color: statusColors(1) }}>
             {project.status}
           </span>
         </div>
 
-        <p className="text-gray-300 text-sm leading-relaxed mb-4 flex-grow">
+        <p className="text-gray-300 text-sm leading-relaxed mb-4 grow">
           {project.description}
         </p>
 
@@ -156,14 +166,15 @@ function ProjectCard({ project }: { project: Project }) {
               rel="noopener noreferrer"
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.95 }}
-              className="flex-1 text-center py-2 px-4 bg-green-500/20 border border-green-500/40 text-green-400 rounded-lg hover:bg-green-500/30 transition-colors text-sm font-mono"
+              className="flex-1 text-center py-2 px-4 rounded-lg text-sm font-mono"
+              style={{ backgroundColor: statusColors(0.1), color: statusColors(0.5), border: `1px solid ${statusColors(0.5)}` }}
             >
               Ver Proyecto
             </motion.a>
           )}
         </div>
 
-        <div className="absolute inset-0 bg-gradient-to-r from-green-500/5 via-transparent to-cyan-500/5 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none"></div>
+        <motion.div className="absolute inset-0 z-20 w-full h-full rounded-3xl pointer-events-none" style={{ backgroundImage: `linear-gradient(90deg,${statusColors(0.1)} 0%, ${statusColors(0.4)} 100%)` }} initial={{ opacity: 0 }} variants={{ hover: { opacity: 100 } }}></motion.div>
       </div>
     </motion.div>
   );
@@ -175,16 +186,16 @@ function Proyectos() {
   const plannedProjects = projects.filter(p => p.status === "Planeado");
 
   return (
-    <ParallaxSection className="bg-slate-900/50 bg-[url('/kira.png')] bg-cover bg-center">
-      <div className="min-h-screen py-20 px-8">
+    <ParallaxSection className="bg-slate-900/50 bg-[url('/kira.png')] bg-cover bg-center" contentY={["0", "0", "0"]} backgroundY={["0", "0", "0"]}>
+      <div className="min-h-screen py-12 sm:py-20 px-4 sm:px-8">
         <motion.div
           initial={{ opacity: 0, y: -50 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, type: "spring" }}
           className="text-center mb-16"
         >
-          <p className="text-4xl p-6 font-extrabold">Proyectos</p>
-          <div className="w-32 h-1 bg-gradient-to-r from-secundary to-white mx-auto rounded-full"></div>
+          <p className="text-2xl sm:text-4xl p-4 sm:p-6 font-extrabold">Proyectos</p>
+          <div className="w-32 h-1 bg-linear-gradient-to-r from-secundary to-white mx-auto rounded-full"></div>
         </motion.div>
 
         <motion.div
@@ -217,12 +228,12 @@ function Proyectos() {
               <motion.h2
                 initial={{ opacity: 0, x: -50 }}
                 whileInView={{ opacity: 1, x: 0 }}
-                className="text-3xl font-bold text-green-400 mb-8 flex items-center"
+                className="text-xl sm:text-3xl font-bold text-green-400 mb-6 sm:mb-8 flex items-center"
               >
                 <span className="w-2 h-2 bg-green-400 rounded-full mr-3"></span>
                 Proyectos Completados
               </motion.h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-8">
                 {completedProjects.map((project, index) => (
                   <ProjectCard key={index} project={project} />
                 ))}
@@ -235,12 +246,12 @@ function Proyectos() {
               <motion.h2
                 initial={{ opacity: 0, x: -50 }}
                 whileInView={{ opacity: 1, x: 0 }}
-                className="text-3xl font-bold text-yellow-400 mb-8 flex items-center"
+                className="text-xl sm:text-3xl font-bold text-yellow-400 mb-6 sm:mb-8 flex items-center"
               >
                 <span className="w-2 h-2 bg-yellow-400 rounded-full mr-3 animate-pulse"></span>
                 En Progreso
               </motion.h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-8">
                 {inProgressProjects.map((project, index) => (
                   <ProjectCard key={index + completedProjects.length} project={project} />
                 ))}
@@ -253,12 +264,12 @@ function Proyectos() {
               <motion.h2
                 initial={{ opacity: 0, x: -50 }}
                 whileInView={{ opacity: 1, x: 0 }}
-                className="text-3xl font-bold text-cyan-400 mb-8 flex items-center"
+                className="text-xl sm:text-3xl font-bold text-cyan-400 mb-6 sm:mb-8 flex items-center"
               >
                 <span className="w-2 h-2 bg-cyan-400 rounded-full mr-3"></span>
                 Planificados
               </motion.h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-8">
                 {plannedProjects.map((project, index) => (
                   <ProjectCard key={index + inProgressProjects.length + completedProjects.length} project={project} />
                 ))}
