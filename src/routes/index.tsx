@@ -7,6 +7,7 @@ import Habilidades from '@/components/habilidades'
 import Educacion from '@/components/educacion'
 import Gradient from '@/components/bg_gradient'
 import { GradientElement } from '@/components/gradient'
+import Proyectos from '@/components/proyectos'
 
 export const Route = createFileRoute('/')({
   component: HomeComponent,
@@ -32,13 +33,14 @@ function HomeComponent() {
         transition={{ delay: 1.5 }}
         animate={{ opacity: 1 }}
         ref={section}
-        className='relative grid grid-rows-4 gap-[25%] '
+        className='relative grid gap-[25%] '
       >
 
         <Hero />
         <Sobre />
         <Habilidades />
         <Educacion />
+        <Proyectos />
       </motion.div>
     </GradientElement>
   )

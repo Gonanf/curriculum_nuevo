@@ -47,19 +47,20 @@ function Habilidades() {
   return (
     <ParallaxSection className={"bg-amber-950/50 bg-[url('/kira2.png')] bg-cover bg-center"} contentClass="sticky inset-0 min-h-screen flex flex-col backdrop-blur-sm">
       <div className="border-4 border-fuchsia-950 min-h-[90vh] m-12 flex flex-col">
-        <p className="text-4xl p-6">Habilidades</p>
+        <p className="text-4xl p-6 font-extrabold">Habilidades</p>
 
-        <div className='flex grow justify-center gap-1.5 border-t-4 border-fuchsia-950 p-4' >
-          <div className="items-end justify-between flex flex-col grow">
+        <div className='flex grow justify-evenly gap-1.5 border-t-4 border-fuchsia-950 p-4' >
+          <div className="items-end justify-between flex flex-col ">
             {seccion1.map((val, index) => <Item key={val} onHover={handleImageHover} index={index}>{val}</Item>)}
           </div>
 
           <motion.img 
             src={currentImage} 
-            className="h-[90%] w-[90%] self-center drop-shadow-2xl drop-shadow-amber-300/50 " 
+            className=" self-center drop-shadow-2xl drop-shadow-amber-300/50 " 
+            whileHover={{scale: 1.1, rotate: 5}}
           />
 
-          <div className="grow flex flex-col justify-between">
+          <div className=" flex flex-col justify-between">
             {seccion2.map((val, index) => <Item key={val} onHover={handleImageHover} index={index + seccion1.length}>{val}</Item>)}
           </div>
         </div>

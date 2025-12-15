@@ -55,12 +55,13 @@ function PartContainer({ left = false, items, percentage }: PropsContainer) {
     }
   })
 
-  return (<motion.div className=" relative h-full w-full flex grow bg-cover bg-center" style={{ backgroundImage: `url('/${items[currentIndex].image}')`, opacity: leftside }} >
+  return (<motion.div className=" relative h-full w-full flex grow bg-cover bg-center">
+    <motion.img src={items[currentIndex].image} alt="" className="absolute w-full h-full object-cover blur-xl" style={{ opacity: leftside }} />
     <Part className="w-[50vw] h-full m-4">
       <Slider percentage={percentage}></Slider>
     </Part>
     <Part value={leftside} className="flex flex-col justify-center w-[50vw] h-full m-4 ">
-      <div className="border-2 border-cyan-400 bg-cyan-50/10 backdrop-blur-xl p-8 rounded-md gap-4 grid">
+      <div className="border-2 border-cyan-400 bg-cyan-800/90 backdrop-blur-xl p-8 rounded-md gap-4 grid">
         <h3 className="text-3xl text-white font-extrabold">{items[currentIndex].titulo}</h3>
         <p className="text-xl text-cyan-400">{items[currentIndex].nombre}</p>
         <p className="text-lg px-4 py-2 text-cyan-300 bg-linear-to-r from-cyan-500/10 to-purple-500/10 border border-cyan-100/30 rounded-full mt-12">{items[currentIndex].fecha}</p>
@@ -72,7 +73,6 @@ function PartContainer({ left = false, items, percentage }: PropsContainer) {
 }
 
 function Part({ children, value, className = "absolute top-0 w-[50vw] h-full m-4 " }: Props) {
-  if (value) value.on('change', (e) => console.log(e))
   return (
     <motion.div className={className} transition={{ duration: 1, ease: easeInOut }} style={{ opacity: value }}>
       {children}
@@ -85,9 +85,9 @@ function Slider({ percentage }: { percentage: MotionValue }) {
   //TODO: Make an option to start from bottom
   const Y = useSpring(useTransform(percentage, [0.25, 0.75], ["-80vh", "-10vh"]))
 
-  return (<div className="relative h-full">
-    <div className="w-2 bg-fuchsia-950 h-full"></div>
-    <motion.div className="rounded-full bg-radial from-fuchsia-950 to-purple-500 border border-t-purple-800 absolute w-12 h-12" animate={{ rotate: 360 }} transition={{ duration: 1, ease: easeIn, repeat: Infinity }} style={{ y: Y, x: "-40%" }}></motion.div>
+  return (<div className="relative h-full ml-12">
+    <div className="w-2 bg-fuchsia-500 h-full"></div>
+    <motion.div className="rounded-full bg-radial from-fuchsia-500 to-purple-700 border border-t-purple-800 absolute w-12 h-12" animate={{ rotate: 360 }} transition={{ duration: 1, ease: easeIn, repeat: Infinity }} style={{ y: Y, x: "-40%" }}></motion.div>
   </div>)
 }
 
@@ -111,12 +111,19 @@ function Educacion() {
       fecha: "Marzo 2018 - Diciembre 2025",
       image: "escuela.png"
     },
+    {
+      titulo: "Pasantias",
+      nombre: "SISCOD",
+      fecha: "Agosto 2025 - Octubre 2025",
+      image: "logo-siscod-1.png"
+    },
+
   ]
 
   return (
     <ParallaxSection ref={ref} className={"bg-amber-950/50 bg-linear-to-b from-cyan-950 to-amber-950 bg-cover bg-center min-h-[500vh]"} backgroundY={["0%", "0%", "0%"]} contentClass="relative min-h-screen h-full flex flex-col backdrop-blur-sm">
       <div className="border-4 border-fuchsia-950 mt-4 ml-4 mr-4 pb-4 flex flex-col sticky inset-0 min-h-screen">
-        <p className="text-4xl p-6 font-extrabold">Educacion</p>
+        <p className="text-4xl p-6 font-extrabold">Educacion/Experiencia</p>
 
         <div className='flex grow border-t-4 border-fuchsia-950' >
 
