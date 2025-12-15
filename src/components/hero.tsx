@@ -4,23 +4,23 @@ import Terminal from "./terminal";
 //TODO: Moving gradient does not work
 function Hero() {
   return (
-    <ParallaxSection className="cyber-grid-dark">
+    <ParallaxSection className="cyber-grid-dark max-w-screen">
       <div className='grow flex flex-col gap-5 min-h-screen px-4 sm:px-8 justify-center md:items-center' >
-        <motion.h1 
+        <motion.h1
           className='text-3xl sm:text-5xl md:text-7xl lg:text-9xl font-extrabold md:text-center font-mono bg-linear-to-r to-secondary from-neutral-300 bg-clip-text text-transparent bg-[200%]'
-          initial={{ 
+          initial={{
             backgroundPosition: "0% 0%",
             opacity: 0,
             y: 20
-          }} 
-          animate={{ 
+          }}
+          animate={{
             backgroundPosition: ["0% 0%", "200% 0%", "0% 0%"],
             opacity: 1,
             y: 0
-          }} 
+          }}
           transition={{
-              duration: 1,
-              ease: "easeInOut"
+            duration: 1,
+            ease: "easeInOut"
           }}
         >Gabriel Solotorevsky</motion.h1>
         <p className='text-neutral-400 text-xs sm:text-sm md:text-base'>Desarrollador de Software/Fullstack</p>

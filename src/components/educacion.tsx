@@ -96,7 +96,7 @@ function Educacion() {
       image: "escuela.png"
     },
     {
-      titulo: "Pasantias",
+      titulo: "Pasantias (Puesto FullStack)",
       nombre: "SISCOD",
       fecha: "Agosto 2025 - Octubre 2025",
       image: "logo-siscod-1.png"
@@ -104,7 +104,7 @@ function Educacion() {
   ]
 
   return (
-    <ParallaxSection ref={ref} className={"bg-amber-950/50 bg-linear-to-b from-cyan-950 to-amber-950 bg-cover bg-center min-h-[500vh]"} backgroundY={["0%", "0%", "0%"]} contentClass="relative min-h-screen h-full flex flex-col backdrop-blur-sm">
+    <ParallaxSection ref={ref} className={"bg-amber-950/50 bg-linear-to-b from-cyan-950 to-amber-950 bg-cover bg-center min-h-[500vh] max-w-screen"} backgroundY={["0%", "0%", "0%"]} contentClass="relative min-h-screen h-full flex flex-col backdrop-blur-sm">
       <div className="border-2 sm:border-4 border-fuchsia-950 mt-2 sm:mt-4 mx-2 sm:mx-4 pb-2 sm:pb-4 flex flex-col sticky inset-0 min-h-screen">
         <p className="text-xl sm:text-2xl md:text-4xl p-3 sm:p-6 font-extrabold">Educacion/Experiencia</p>
         <div className='flex grow border-t-2 sm:border-t-4 border-fuchsia-950'>

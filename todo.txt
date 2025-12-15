@@ -1,5 +1,0 @@
-- [x] Analizar el error de TypeScript en educacion.tsx
-- [x] Examinar el componente ParallaxSection para entender su estructura
-- [x] Solucionar el problema de la prop ref
-- [x] Verificar que la funcionalidad de scroll siga funcionando
-- [x] Probar que no haya otros errores similares

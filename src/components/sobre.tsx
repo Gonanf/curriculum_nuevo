@@ -4,7 +4,7 @@ import Terminal from "./terminal";
 
 function Sobre() {
   return (
-    <ParallaxSection className="bg-[url('/kira.png')] bg-cover" >
+    <ParallaxSection className="bg-[url('/kira.png')] bg-cover max-w-screen" >
       <div className='grow flex flex-col gap-5 min-h-screen px-4 sm:px-8 justify-center items-center' >
         <motion.div initial={{ scale: 0 }} whileInView={{ scale: 1 }}
           transition={{ type: "spring", stiffness: 100 }}
@@ -41,7 +41,7 @@ function Sobre() {
       </div>
 
     </ParallaxSection>
-)
+  )
 }
 
 export default Sobre
