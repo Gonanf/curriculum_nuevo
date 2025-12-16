@@ -4,8 +4,8 @@ import Terminal from "./terminal";
 
 function Sobre() {
   return (
-    <ParallaxSection className="bg-[url('/kira.png')] bg-cover max-w-screen grow" >
-      <div className='grow flex flex-col gap-5 min-h-[150vh] px-4 sm:px-8 justify-center items-center' >
+    <ParallaxSection className="bg-[url('/kira.png')] bg-cover max-w-screen min-h-[150vh] grow" >
+      <div className='grow flex flex-col gap-5 min-h-screen px-4 sm:px-8 justify-center items-center' >
         <motion.div initial={{ scale: 0 }} whileInView={{ scale: 1 }}
           transition={{ type: "spring", stiffness: 100 }}
           className='w-full md:w-[70%] lg:w-[50%] backdrop-blur-3xl border-2 border-green-500/40 shadow-[0px_0px_25px_5px_rgba(51,209,122,0.6)] sm:shadow-[0px_0px_45px_10px_rgba(51,209,122,0.6)] bg-black/95 rounded-xl sm:rounded-3xl p-2 sm:p-4'>

@@ -29,7 +29,7 @@ function PartContainer({ left = false, items, percentage }: PropsContainer) {
   const l_value = Array(op_size).fill(starting[0]).map((_, index) => starting[index % 2])
 
   const change = 0.5 / items.length
-  const change_op = 0.7 / op_size
+  const change_op = 0.5 / op_size
   const change_op_list = Array(op_size).fill(0.25).map((val, index) => val + (change_op * index))
   const change_ar = Array(items.length).fill(0.25).map((val, index) => val + (change * index))
   const change_val = Array(items.length).fill(0).map((_, index) => index)
@@ -46,7 +46,7 @@ function PartContainer({ left = false, items, percentage }: PropsContainer) {
     }
   })
 
-  return (<motion.div className="relative h-full w-full flex flex-col md:flex-row grow bg-cover bg-center">
+  return (<motion.div className="relative min-h-full w-full flex flex-col md:flex-row grow bg-cover bg-center">
     <motion.img src={items[currentIndex].image} alt="" className="absolute w-full h-full object-cover blur-xl" style={{ opacity: leftside }} />
     <Part className="hidden md:block w-[50vw] h-full m-2 sm:m-4">
       <Slider percentage={percentage}></Slider>
@@ -104,12 +104,14 @@ function Educacion() {
   ]
 
   return (
-    <ParallaxSection ref={ref} className={"bg-amber-950/50 bg-linear-to-b from-cyan-950 to-amber-950 bg-cover bg-center min-h-[500vh] max-w-screen"} backgroundY={["0%", "0%", "0%"]} contentClass="relative min-h-screen h-full flex flex-col backdrop-blur-sm">
-      <div className="border-2 sm:border-4 border-fuchsia-950 mt-2 sm:mt-4 mx-2 sm:mx-4 pb-2 sm:pb-4 flex flex-col sticky inset-0 min-h-screen">
-        <p className="text-xl sm:text-2xl md:text-4xl p-3 sm:p-6 font-extrabold">Educacion/Experiencia</p>
+    <ParallaxSection className={"bg-amber-950/50 bg-linear-to-b from-cyan-950 to-amber-950 bg-cover bg-center max-w-screen"} backgroundY={["0%", "0%", "0%"]} contentClass="relative min-h-screen flex flex-col backdrop-blur-sm">
+      <div ref={ref} className=" min-h-[500vh]" >
+      <div className="border-2 relative sm:border-4 border-fuchsia-950 mt-2 sm:mt-4 mx-2 sm:mx-4 pb-2 sm:pb-4 flex flex-col sticky inset-0 min-h-screen">
+        <p className="text-xl relative sm:text-2xl md:text-4xl p-3 sm:p-6 font-extrabold">Educacion/Experiencia</p>
         <div className='flex grow border-t-2 sm:border-t-4 border-fuchsia-950'>
           <PartContainer items={items} percentage={scrollYProgress} />
         </div>
+      </div>
       </div>
     </ParallaxSection>
   )

@@ -34,7 +34,7 @@ function HomeComponent() {
         transition={{ delay: 1.5 }}
         animate={{ opacity: 1 }}
         ref={section}
-        className='relative flex flex-col gap-[25%] '
+        className='relative flex flex-col gap-[25vh] '
       >
 
         <Hero />

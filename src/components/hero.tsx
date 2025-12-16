@@ -4,8 +4,8 @@ import Terminal from "./terminal";
 //TODO: Moving gradient does not work
 function Hero() {
   return (
-    <ParallaxSection className="cyber-grid-dark max-w-screen grow">
-      <div className='grow flex flex-col gap-5 min-h-[150vh] px-4 sm:px-8 justify-center md:items-center' >
+    <ParallaxSection className="cyber-grid-dark max-w-screen grow min-h-[150vh]">
+      <div className='grow flex flex-col gap-5 min-h-screen px-4 sm:px-8 justify-center md:items-center' >
         <motion.h1
           className='text-3xl sm:text-5xl md:text-7xl lg:text-9xl font-extrabold md:text-center font-mono bg-linear-to-r to-secondary from-neutral-300 bg-clip-text text-transparent bg-[200%]'
           initial={{
