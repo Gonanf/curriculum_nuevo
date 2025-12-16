@@ -23,19 +23,11 @@ interface PropsContainer {
 
 function PartContainer({ left = false, items, percentage }: PropsContainer) {
 
-  const starting = left ? ["0%", "100%"] : ["100%", "0%"]
-
-  const op_size = ((items.length * 2) - 1)
-  const l_value = Array(op_size).fill(starting[0]).map((_, index) => starting[index % 2])
-
-  const change = 0.5 / items.length
-  const change_op = 0.5 / op_size
-  const change_op_list = Array(op_size).fill(0.25).map((val, index) => val + (change_op * index))
-  const change_ar = Array(items.length).fill(0.25).map((val, index) => val + (change * index))
-  const change_val = Array(items.length).fill(0).map((_, index) => index)
-
-  const leftside = useTransform(percentage, change_op_list, l_value)
-  const item_index = useTransform(percentage, change_ar, change_val)
+  //Dam
+  const change_ar = [0.1,0.4,0.7]
+  const change_op_list = [0,0.4,0.55,0.7,0.8]
+  const leftside = useTransform(percentage, change_op_list, ["100%","0%","100%","0%","100%"])
+  const item_index = useTransform(percentage, change_ar, [0,1,2])
 
   const [currentIndex, setIndex] = useState(0)
 
@@ -82,6 +74,7 @@ function Educacion() {
   const ref = useRef<HTMLDivElement>(null)
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] })
 
+  scrollYProgress.on('change',(val) => console.log("ASS",val))
   const items: Array<Items> = [
     {
       titulo: "Educacion Primaria",
@@ -104,7 +97,7 @@ function Educacion() {
   ]
 
   return (
-    <ParallaxSection className={"bg-amber-950/50 bg-linear-to-b from-cyan-950 to-amber-950 bg-cover bg-center max-w-screen"} backgroundY={["0%", "0%", "0%"]} contentClass="relative min-h-screen flex flex-col backdrop-blur-sm">
+    <ParallaxSection className={"bg-amber-950/50 bg-linear-to-b from-cyan-950 to-amber-950 bg-cover bg-center max-w-screen"} backgroundY={["0%", "0%", "10%"]} contentY={["0%", "0%", "-10%"]} contentClass="relative min-h-screen flex flex-col backdrop-blur-sm">
       <div ref={ref} className=" min-h-[500vh]" >
       <div className="border-2 relative sm:border-4 border-fuchsia-950 mt-2 sm:mt-4 mx-2 sm:mx-4 pb-2 sm:pb-4 flex flex-col sticky inset-0 min-h-screen">
         <p className="text-xl relative sm:text-2xl md:text-4xl p-3 sm:p-6 font-extrabold">Educacion/Experiencia</p>

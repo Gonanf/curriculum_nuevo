@@ -186,7 +186,7 @@ function Proyectos() {
   const plannedProjects = projects.filter(p => p.status === "Planeado");
 
   return (
-    <ParallaxSection className="bg-slate-900/50 bg-[url('/kira.png')] bg-cover bg-center" contentY={["0", "0", "0"]} backgroundY={["0", "0", "0"]}>
+    <ParallaxSection className="bg-slate-900/50 bg-[url('/kira.png')] bg-cover bg-center" backgroundY={["0%","0%","10%"]}>
       <div className="min-h-screen py-12 sm:py-20 px-4 sm:px-8">
         <motion.div
           initial={{ opacity: 0, y: -50 }}

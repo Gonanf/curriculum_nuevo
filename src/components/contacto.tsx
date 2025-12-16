@@ -81,7 +81,7 @@ function Contacto() {
   ]
 
   return (
-    <ParallaxSection className="bg-slate-900/50 bg-[url('/kira.png')] bg-cover bg-center">
+    <ParallaxSection className="bg-slate-900/50 bg-[url('/kira.png')] bg-cover bg-center" >
       <div className="min-h-screen max-w-screen flex flex-col items-center justify-center">
         <motion.div
           initial={{ opacity: 0, y: -50 }}
