@@ -16,12 +16,11 @@ interface Props {
 }
 
 interface PropsContainer {
-  left?: boolean,
   items: Items[],
   percentage: MotionValue,
 }
 
-function PartContainer({ left = false, items, percentage }: PropsContainer) {
+function PartContainer({items, percentage }: PropsContainer) {
 
   //Dam
   const change_ar = [0.1,0.4,0.7]
