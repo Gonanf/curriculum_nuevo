@@ -44,8 +44,8 @@ function Habilidades() {
   }
 
   return (
-    <ParallaxSection className={"bg-amber-950/50 bg-[url('/kira2.png')] bg-cover bg-center max-w-screen"} contentClass="sticky inset-0 min-h-screen flex flex-col backdrop-blur-sm">
-      <div className="border-2 sm:border-4 border-fuchsia-950 min-h-[90vh] m-2 sm:m-4 md:m-8 lg:m-12 flex flex-col">
+    <ParallaxSection className={"bg-amber-950/50 bg-[url('/kira2.png')] bg-cover bg-center max-w-screen grow"} contentClass="sticky inset-0 min-h-screen flex flex-col backdrop-blur-sm">
+      <div className="border-2 sm:border-4 border-fuchsia-950 min-h-[150vh] m-2 sm:m-4 md:m-8 lg:m-12 flex flex-col">
         <p className="text-xl sm:text-2xl md:text-4xl p-3 sm:p-6 font-extrabold">Habilidades</p>
 
         <div className='flex flex-col md:flex-row grow justify-evenly gap-1.5 border-t-2 sm:border-t-4 border-fuchsia-950 p-2 sm:p-4' >
