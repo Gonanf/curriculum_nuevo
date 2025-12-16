@@ -57,7 +57,7 @@ function Habilidades() {
             <motion.img
               key={currentImage}
               src={currentImage}
-              className="self-center drop-shadow-2xl drop-shadow-amber-300/50 w-24 h-24 sm:w-32 sm:h-32 md:w-48 md:h-48 hidden md:block"
+              className="self-center drop-shadow-2xl drop-shadow-amber-300/50 w-24 h-24 sm:w-32 sm:h-32 md:w-48 md:h-48 md:block"
               initial={{ opacity: 0, scale: 0.8, rotate: -10 }}
               animate={{ opacity: 1, scale: 1, rotate: 0 }}
               exit={{ opacity: 0, scale: 0.8, rotate: 10 }}
