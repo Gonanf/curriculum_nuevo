@@ -44,7 +44,7 @@ function ProjectCard({ project }: { project: Contact }) {
           <div className="w-8 h-8 sm:w-10 sm:h-10 flex items-center justify-center">
             {project.logo}
           </div>
-          <motion.h3 className="text-sm sm:text-base text-wrap w-full text-center font-bold mb-1" initial={{ color: 'oklch(98.2% 0.018 155.826)' }} transition={{ duration: 0.2, ease: easeInOut }} variants={hover_variant}>
+          <motion.h3 className="text-sm sm:text-base text-wrap h-full break-all w-full text-center font-bold mb-1" initial={{ color: 'oklch(98.2% 0.018 155.826)' }} transition={{ duration: 0.2, ease: easeInOut }} variants={hover_variant}>
             {project.titulo}
           </motion.h3>
         </div>
