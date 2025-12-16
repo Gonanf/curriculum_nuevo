@@ -1,50 +1,30 @@
 import Typed from 'typed.js'
-import { motion, useInView } from 'motion/react'
-import { useEffect, useRef, type ReactNode } from 'react'
+import { motion } from 'motion/react'
+import { useEffect, useRef } from 'react'
 
 interface Props {
-  children?: ReactNode,
+  children?: React.ReactNode,
   className?: string,
   textSpeed?: number
 }
 
 function Terminal({ children, className, textSpeed = 35 }: Props) {
+  const textRef = useRef<HTMLSpanElement>(null)
+  const childRef = useRef<HTMLDivElement>(null)
 
-  //TODO: Commandline ? or animation
-  //First animation
+useEffect(() => {
+if (!textRef.current || !childRef.current) return 
 
-  const text = useRef(null)
-  const child = useRef(null)
-  const inView = useInView(text)
-  const res = useRef<Typed | undefined>(undefined)
+ const t = new Typed(textRef.current!, {
+          stringsElement: childRef.current!,
+          typeSpeed: textSpeed,
+          loop: false,
+          showCursor: true,
+});
 
-  useEffect(() => {
-    if (!text.current || !child.current) return
+return () => t.destroy() 
+},[])
 
-    res.current = new Typed(text.current, {
-      stringsElement: child.current,
-      typeSpeed: textSpeed,
-      backSpeed: 15,
-      backDelay: 1000,
-      loop: false,
-      showCursor: true,
-      cursorChar: '|',
-    })
-    res.current.stop()
-
-    return () => {
-      res.current!.destroy()
-    }
-  },[])
-  
-  useEffect(() => {
-    if (!text.current || !child.current) return
-    if (!res.current) return
-    if (!inView) {res.current.stop(); res.current.reset(); return}
-
-    res.current.start()
-  }, [inView])
-  
   return (
     <motion.div 
       className={`
@@ -60,17 +40,18 @@ function Terminal({ children, className, textSpeed = 35 }: Props) {
       transition={{ duration: 0.6, ease: "easeOut" }}
     >
       <span 
-        ref={text}
-        className="block leading-relaxed"
+        ref={textRef}
+        className="block leading-relaxed min-h-[1.5em]"
       >
-        <div ref={child} className="hidden">
+        <div ref={childRef} className="hidden">
           {children}
         </div>
       </span>
       
       <div className="absolute inset-0 bg-gradient-to-br from-green-500/5 via-transparent to-cyan-500/5 rounded-lg pointer-events-none"></div>
+
     </motion.div>
   )
 }
 
-export default Terminal;
+export default Terminal

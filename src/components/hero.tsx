@@ -37,7 +37,7 @@ function Hero() {
           </p>
           <div className='flex flex-col sm:flex-row w-full'>
             <img src='kira.png' className='mix-blend-plus-lighter self-center w-32 h-32 sm:w-48 sm:h-48 md:w-64 md:h-64' />
-            <Terminal className='block text-left text-[10px] sm:text-xs md:text-sm'>
+            <Terminal className='block text-left text-[10px] sm:text-xs md:text-sm w-full'>
               <p>
                 <span className='text-fuchsia-800'>chaos</span>
                 <span className='text-amber-300'>@</span>
